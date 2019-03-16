@@ -5,4 +5,4 @@ SYNOPSIS
 
 $filename = "ADLastLogOn" + (get-date -format "-MM-dd-yyyy-hhmmtt")
 
-Invoke-Command -ComputerName AD01 {Get-aduser -filter * -properties lastlogon | select samaccountname, @{n='lastlogon';e={[datetime]::FromFileTime($_.lastlogon)}}} | select -Property * -ExcludeProperty PSComputerName, RunspaceId | export-csv C:\Users\$env:USERNAME\downloads\$filename.csv
+Invoke-Command -ComputerName <your-dc-computer-name> {Get-aduser -filter * -properties lastlogon | select samaccountname, @{n='lastlogon';e={[datetime]::FromFileTime($_.lastlogon)}}} | select -Property * -ExcludeProperty PSComputerName, RunspaceId | export-csv C:\Users\$env:USERNAME\downloads\$filename.csv
